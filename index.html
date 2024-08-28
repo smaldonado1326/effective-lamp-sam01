@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phonetic Converter</title>
+    <!-- External CSS libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Phonetic Converter</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Navigation menu items -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fsmaldonado1326.github.io%2Fcautious-tribble-juliett%2F" target="_blank">Nu Check</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/smaldonado1326/cautious-tribble-juliett" target="_blank">Repo</a> 
+                        </li>
+                     
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content container -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <p>This program converts your input text into various phonetic formats.</p>
+                <!-- Text input field -->
+                <input type="text" id="textInput" class="form-control mb-3" placeholder="Enter text...">
+           
+                <div id="goCrazy" style="display: none;">Go Crazy!</div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <!-- Radio buttons for selecting output type -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="outputType" id="nato" value="nato" checked>
+                    <label class="form-check-label" for="nato">NATO Phonetic</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="outputType" id="kebab" value="kebab">
+                    <label class="form-check-label" for="kebab">Kebab-case</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <!-- Convert and Clear buttons -->
+                <button id="convertBtn" class="btn btn-primary mb-3">Convert</button>
+                <button id="clearBtn" class="btn btn-secondary mb-3">Clear</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <!-- Output list -->
+                <ul id="outputList" class="list-group">
+                    <!-- Output items will be appended here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 py-3 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- Footer content -->
+                    <p>Created by Sam Maldonado</p>
+                    <p>GitHub Repo: <a href="https://github.com/smaldonado1326/cautious-tribble-juliett">Link</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript libraries -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.min.js'></script>
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>

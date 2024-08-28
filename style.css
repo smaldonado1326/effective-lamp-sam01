@@ -1,0 +1,89 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #dfdfdf; 
+    color: #333;
+    background-image: url('https://wallpapercave.com/wp/wp10646036.jpg'); 
+    background-size: cover; 
+    background-position: center bottom; 
+    background-attachment: fixed; 
+  } 
+  
+  /* Header styles */
+  header {
+    background-color: #0047ab; 
+    color: #d82028; 
+    padding: 15px 0;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #d82028; 
+    font-size: 18px;
+  }
+  
+  /* Main content styles */
+  .container {
+    margin-top: 20px;
+  }
+  
+  .form-control {
+    border: 1px solid #dfdfdf; 
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Text color for elements around the input box */
+  .container p,
+  .form-check-label {
+    color: #fff; 
+  }
+  
+  .btn-primary {
+    background-color: #d82028; 
+    border-color: #d82028;
+  }
+  
+  .btn-secondary {
+    background-color: #d82028; 
+    border-color: #d82028;
+  }
+  
+  /* Output list styles */
+  .list-group-item {
+    border: none;
+    border-bottom: 1px solid #ccc; 
+    font-size: 16px;
+  }
+  footer {
+    background-color: #d82028; 
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }/* Footer styles */
+  footer {
+    background-color: #d82028; 
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .container p {
+    color: #000000; /* Black text color */
+  }
+  
+  /* Go Crazy! message styles */
+  #goCrazy {
+    display: none;
+    color: #0047ab; 
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
