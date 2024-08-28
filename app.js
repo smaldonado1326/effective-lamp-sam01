@@ -6,6 +6,7 @@ app.get('/', function (req, res) {
   res.send('Hello node from Ex on local dev box')
 })
 
+app.use(express.static('./'))
+
 app.listen(3000)
 
-// test again
