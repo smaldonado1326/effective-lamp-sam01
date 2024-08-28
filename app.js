@@ -6,4 +6,6 @@ app.get('/', function (req, res) {
   res.send('Hello node from Ex on local dev box')
 })
 
-app.listen(3000);
+app.listen(3000)
+
+//test
