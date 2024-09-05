@@ -1,1 +1,0 @@
-# effective-lamp-sam01
