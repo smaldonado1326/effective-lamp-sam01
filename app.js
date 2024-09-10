@@ -46,7 +46,7 @@ app.get('/mongo', async (req,res)=>{
   console.log('connected?');
   // Send a ping to confirm a successful connection
   
-  let result = await client.db("kalani-db").collection("dev-king(kalani)").find({}).toArray();
+  let result = await client.db("Effective-lamp").collection("Effective-lamp").find({}).toArray();
   console.log(result); 
 
   res.render('mongo', {
