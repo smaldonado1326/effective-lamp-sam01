@@ -1,5 +1,6 @@
 
 require('dotenv').config()
+console.log(process.env.MONGO_URI);
 const express = require('express')
 const app = express()
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -61,14 +62,18 @@ app.get('/', function (req, res) {
   res.sendFile('index.html');
 })
 
-app.get('/ejs', (req,res)=>{
-``
+app.get('/ejs', (req, res) => {
+  let result = {
+    message: "This is some data from the server",
+    value: 123
+  }; // Corrected closing curly brace instead of parenthesis
+  
   res.render('index', {
-    myServerVariable : "something from server"
+    ejsResult: result
   });
 
-  //can you get content from client...to console? 
-})
+  // Can you get content from the client to console?
+});
 
 app.listen(3000)
 
