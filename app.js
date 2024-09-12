@@ -82,6 +82,35 @@ app.get('/ejs', (req, res) => {
   // Can you get content from the client to console?
 });
 
+
+
+
+
+app.get('/insert', async (req, res)=>{
+  
+  console.log('in/ insert');
+  await client.connect();
+  await client.db("Effective-lamp").collection("Effective-lamp").insertOne({post: 'hardcoded post insert'});
+  res.render('insert');
+  console.log(result); 
+
+});
+
+
+app.get('/update' ,async (red, res)=>{
+  console.log('in/ update');
+  res.render('update', {
+    postData: postData
+  })
+  await client.connect();
+  await client.db("Effective-lamp").collection("Effective-lamp").findOneAndUpdate({"post" : "another day"},
+  {$set: {"post": "the next other day"}}
+
+  );
+  res.render('update');
+
+})
+
 app.listen(3000)
 
 
