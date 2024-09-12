@@ -96,6 +96,20 @@ app.get('/insert', async (req, res)=>{
 
 });
 
+app.post('/update/:id', async (req,res)=>{
+
+  console.log("req.parms.id: ", req.params.id)
+
+  client.connect; 
+  const collection = client.db("Effective-lamp").collection("Effective-lamp");
+  let result = await collection.findOneAndUpdate( 
+  {"_id": new ObjectId(req.params.id)}, { $set: {"post": "NEW POST" } }
+)
+.then(result => {
+  console.log(result); 
+  res.redirect('/read');
+})
+
 
 app.get('/update' ,async (red, res)=>{
   console.log('in/ update');
@@ -110,6 +124,9 @@ app.get('/update' ,async (red, res)=>{
   res.render('update');
 
 })
+
+});
+
 
 app.listen(3000)
 
