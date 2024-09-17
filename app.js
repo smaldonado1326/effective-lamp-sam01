@@ -3,9 +3,17 @@ require('dotenv').config()
 console.log(process.env.MONGO_URI);
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+const { urlencoded } = require('body-parser')
+const { ObjectId } = require('mongodb')
 const { MongoClient, ServerApiVersion,} = require('mongodb');
 const uri = process.env.MONGO_URI; 
 
+app.use(bodyParser.urlencoded({ extended: true }))
+app.set('view engine', 'ejs')
+app.use(express.static('./public/'))
+
+console.log(uri);
 
 
 
