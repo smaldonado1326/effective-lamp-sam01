@@ -3,7 +3,7 @@ require('dotenv').config()
 console.log(process.env.MONGO_URI);
 const express = require('express')
 const app = express()
-const { MongoClient, ServerApiVersion, ObjectID } = require('mongodb');
+const { MongoClient, ServerApiVersion,} = require('mongodb');
 const uri = process.env.MONGO_URI; 
 
 
@@ -72,18 +72,14 @@ app.get('/ejs', (req, res) => {
   let result = {
     message: "This is some data from the server",
     value: 123
-  }; // Corrected closing curly brace instead of parenthesis
+  }; 
   
   res.render('index', {
     ejsResult: result,
     myServerVariable: 'another value from server'
   });
 
-  // Can you get content from the client to console?
 });
-
-
-
 
 
 app.get('/insert', async (req, res)=>{
@@ -101,7 +97,7 @@ app.post('/update/:id', async (req, res) => {
   try {
     const collection = client.db("Effective-lamp").collection("Effective-lamp");
     let result = await collection.findOneAndUpdate(
-      { "_id": new ObjectId(req.params.id) }, // Ensure ObjectId is used correctly
+      { "_id": new ObjectId(req.params.id) }, 
       { $set: { "post": "NEW POST" } }
     );
     console.log(result);
@@ -111,6 +107,24 @@ app.post('/update/:id', async (req, res) => {
     res.status(500).send("Error updating data in MongoDB");
   }
 });
+
+app.post('/delete/:id', async (req,res)=>{
+
+  console.log("req.parms.id: ", req.params.id)
+
+  client.connect; 
+  const collection = client.db("Effective-lamp").collection("Effective-lamp");
+  let result = await collection.findOneAndDelete( 
+  {"_id": new ObjectId(req.params.id)})
+
+.then(result => {
+  console.log(result); 
+  res.redirect('/read');
+})
+
+  //insert into it
+
+})
 
 
 app.get('/read', async (req, res) => {
@@ -137,7 +151,7 @@ app.get('/update', async (req, res) => {
       { $set: { "post": "the next other day" } }
     );
     res.render('update', {
-      postData: "Data has been updated"  // Adjust the data passed to the view
+      postData: "Data has been updated" 
     });
   } catch (err) {
     console.error("Error updating data in MongoDB:", err);
@@ -149,4 +163,4 @@ app.listen(3000)
 
 
 
-//t
+
