@@ -9,6 +9,7 @@ const { ObjectId } = require('mongodb')
 const { MongoClient, ServerApiVersion,} = require('mongodb');
 const uri = process.env.MONGO_URI; 
 
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 app.use(express.static('./public/'))
@@ -108,7 +109,7 @@ app.post('/update/:id', async (req, res) => {
       { "_id": new ObjectId(req.params.id) }, 
       { $set: { "post": "NEW POST" } }
     );
-    console.log(result);
+    console.log('Update result:', result);
     res.redirect('/read');
   } catch (err) {
     console.error("Error updating data in MongoDB:", err);
