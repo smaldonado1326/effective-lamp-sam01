@@ -39,7 +39,7 @@ $(document).ready(function() {
                 default:
                     outputText = convertToNatoPhonetic(inputText);
             }
-            $('#outputList').append('<li class="list-group-item">' + outputText + '</li>');
+            $('#outputList').append('<li class="list-group-item"><input name="outputteedeadf" value="outputText" disabled>' + outputText + '</li>');
         }
     });
 
