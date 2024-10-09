@@ -1,89 +1,63 @@
-/* Body styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #dfdfdf; 
-    color: #333;
-    background-image: url('https://wallpapercave.com/wp/wp10646036.jpg'); 
-    background-size: cover; 
-    background-position: center bottom; 
-    background-attachment: fixed; 
-  } 
-  
-  /* Header styles */
-  header {
-    background-color: #0047ab; 
-    color: #d82028; 
-    padding: 15px 0;
-  }
-  
-  .navbar-brand {
-    font-size: 24px;
-  }
-  
-  .navbar-nav .nav-link {
-    color: #d82028; 
-    font-size: 18px;
-  }
-  
-  /* Main content styles */
-  .container {
-    margin-top: 20px;
-  }
-  
-  .form-control {
-    border: 1px solid #dfdfdf; 
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  /* Text color for elements around the input box */
-  .container p,
-  .form-check-label {
-    color: #fff; 
-  }
-  
-  .btn-primary {
-    background-color: #d82028; 
-    border-color: #d82028;
-  }
-  
-  .btn-secondary {
-    background-color: #d82028; 
-    border-color: #d82028;
-  }
-  
-  /* Output list styles */
-  .list-group-item {
-    border: none;
-    border-bottom: 1px solid #ccc; 
-    font-size: 16px;
-  }
-  footer {
-    background-color: #d82028; 
-    padding: 20px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }/* Footer styles */
-  footer {
-    background-color: #d82028; 
-    padding: 20px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  .container p {
-    color: #000000; /* Black text color */
-  }
-  
-  /* Go Crazy! message styles */
-  #goCrazy {
-    display: none;
-    color: #0047ab; 
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1, h2 {
+  font-weight: 700;
+}
+
+.card {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 0.5rem;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.footer {
+  background-color: #343a40;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
