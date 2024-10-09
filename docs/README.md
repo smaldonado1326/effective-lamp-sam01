@@ -7,4 +7,4 @@ This web application allows users to convert input text into the NATO phonetic a
 - [Pull Request #14](https://github.com/smaldonado1326/effective-lamp-sam01/pull/14)
 
 - [Issue #8](https://github.com/smaldonado1326/effective-lamp-sam01/issues/8)
--[Pull Request #9](https://github.com/smaldonado1326/effective-lamp-sam01/pull/9)
+- [Pull Request #9](https://github.com/smaldonado1326/effective-lamp-sam01/pull/9)
