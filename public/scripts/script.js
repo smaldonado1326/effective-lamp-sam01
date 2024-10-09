@@ -8,58 +8,31 @@ $(document).ready(function() {
             'P': 'Papa', 'Q': 'Quebec', 'R': 'Romeo', 'S': 'Sierra', 'T': 'Tango',
             'U': 'Uniform', 'V': 'Victor', 'W': 'Whiskey', 'X': 'X-ray', 'Y': 'Yankee', 'Z': 'Zulu'
         };
-        // Convert each character to its NATO phonetic equivalent
         var phoneticText = '';
         for (var i = 0; i < text.length; i++) {
             var char = text.charAt(i).toUpperCase();
-            if (natoPhonetic[char]) {
-                phoneticText += natoPhonetic[char] + ' ';
-            } else {
-                phoneticText += char + ' '; 
-            }
+            phoneticText += natoPhonetic[char] || char;
+            phoneticText += ' ';
         }
-        return phoneticText.trim(); 
-    }
-
-    // Function to convert text to kebab-case
-    function convertToKebabCase(text) {
-        return text.toLowerCase().replace(/\s+/g, '-');
+        return phoneticText.trim();
     }
 
     // Event listener for convert button
     $('#convertBtn').click(function() {
         var inputText = $('#textInput').val().trim();
         if (inputText !== '') {
-            var outputText;
-            var outputType = $('input[name=outputType]:checked').val();
-            switch (outputType) {
-                case 'kebab':
-                    outputText = convertToKebabCase(inputText);
-                    break;
-                default:
-                    outputText = convertToNatoPhonetic(inputText);
-            }
-            $('#outputList').append('<li class="list-group-item">' + outputText + '</li>');
+            var outputText = convertToNatoPhonetic(inputText);
+
+            // Place the output in the hidden input field for submission
+            $('#convertedText').val(outputText);
+
+            // Submit the form to save the result as a new post in MongoDB
+            $('#conversionForm').submit();
         }
     });
 
-    // Event listener for clear button
+    // Clear button functionality
     $('#clearBtn').click(function() {
         $('#textInput').val('');
-        $('#outputList').empty();
-    });
-
-    // Hamburger menu toggle for smaller screens
-    $('.navbar-toggler').click(function() {
-        $('.navbar-collapse').toggleClass('show');
-    });
-
-    // Event listener for text input
-    $('#textInput').on('input', function() {
-        if ($(this).val().trim() !== '') {
-            $('#goCrazy').slideDown();
-        } else {
-            $('#goCrazy').slideUp();
-        }
     });
 });
