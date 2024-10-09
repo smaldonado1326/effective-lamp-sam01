@@ -1,138 +1,86 @@
-
-
-require('dotenv').config()
-console.log(process.env.MONGO_URI);
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const { urlencoded } = require('body-parser')
-const { ObjectId } = require('mongodb')
-const { MongoClient, ServerApiVersion,} = require('mongodb');
-const uri = process.env.MONGO_URI; 
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const { ObjectId } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+app.use(express.static('./public/'));
 
-
-app.use(bodyParser.urlencoded({ extended: true }))
-app.set('view engine', 'ejs')
-app.use(express.static('./public/'))
-
-console.log(uri);
-
-console.log('im on a node server change that and that tanad f, yo');
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    },
 });
 
-// function whateverNameOfIt (params) {}
-// ()=>{}
+// Main route to render `index.ejs` with MongoDB data
+app.get('/', async (req, res) => {
+    try {
+        await client.connect();
+        const result = await client.db("Effective-lamp").collection("Effective-lamp").find({}).toArray();
+        res.render('index', {
+            postData: result
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).send('Error loading the page');
+    }
+});
 
-app.get('/', async function (req, res) {
-  // res.send('Hello Node from Ex on local dev box')
-  // res.sendFile('index.html');
-  // TODO: /read now in / 
-  console.log('in / home ');
-  await client.connect();
+// Route to save converted output as a new post
+app.post('/saveConverted', async (req, res) => {
+    const { convertedText } = req.body;
+    console.log('Saving converted post:', convertedText);
 
-  console.log('connected?');
-  // Send a ping to confirm a successful connection
+    try {
+        await client.connect();
+        await client.db("Effective-lamp").collection("Effective-lamp").insertOne({ post: convertedText });
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error saving post:', error);
+        res.status(500).send('Failed to save post');
+    }
+});
 
-  let result = await client.db("Effective-lamp").collection("Effective-lamp")
-    .find({}).toArray(); 
-  console.log(result); 
+// Update an existing post in MongoDB
+app.post('/update/:id', async (req, res) => {
+    const postId = req.params.id;
+    const { newPost } = req.body;
 
-  res.render('index', {
-    ejsResult : result
-  });
+    try {
+        await client.connect();
+        await client.db("Effective-lamp").collection("Effective-lamp").findOneAndUpdate(
+            { "_id": new ObjectId(postId) },
+            { $set: { "post": newPost } }
+        );
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error updating post:', error);
+        res.status(500).send('Error updating post');
+    }
+});
 
+// Delete a post from MongoDB
+app.post('/delete/:id', async (req, res) => {
+    const postId = req.params.id;
 
-})
+    try {
+        await client.connect();
+        await client.db("Effective-lamp").collection("Effective-lamp").findOneAndDelete({ "_id": new ObjectId(postId) });
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        res.status(500).send('Error deleting post');
+    }
+});
 
-app.get('/ejs', (req,res)=>{
-
-  res.render('index', {
-    myServerVariable : "something from server"
-  });
-
-  //can you get content from client...to console? 
-})
-
-app.get('/read', async (req,res)=>{
-
-  console.log('in /read');
-  await client.connect();
-
-  console.log('connected?');
-  // Send a ping to confirm a successful connection
-
-  let result = await client.db("Effective-lamp").collection("Effective-lamp")
-    .find({}).toArray(); 
-  console.log(result); 
-
-  res.render('read', {
-    postData : result
-  });
-
-})
-
-app.post('/insert', async (req,res)=> {
-
-  console.log('in /insert');
-
-  console.log('request', req.body);
-  //console.log('request', req.body.newPost);
-
-  //connect to db,
-  await client.connect();
-  //point to the collection 
-  await client.db("Effective-lamp").collection("Effective-lamp").insertOne({ post: req.body.newPost});
-  // await client.db("barrys-db").collection("whatever-collection").insertOne({ iJustMadeThisUp: 'hardcoded new key '});
-  //insert into it
-  res.redirect('/');
-
-}); 
-
-app.post('/update/:id', async (req,res)=>{
-
-  console.log("req.parms.id: ", req.params.id)
-
-  client.connect; 
-  const collection = client.db("Effective-lamp").collection("Effective-lamp");
-  let result = await collection.findOneAndUpdate( 
-  {"_id": new ObjectId(req.params.id)}, { $set: {"post": "NEW POST" } }
-)
-.then(result => {
-  console.log(result); 
-  res.redirect('/read');
-})
-}); 
-
-app.post('/delete/:id', async (req,res)=>{
-
-  console.log("req.parms.id: ", req.params.id)
-
-  client.connect; 
-  const collection = client.db("Effective-lamp").collection("Effective-lamp");
-  let result = await collection.findOneAndDelete( 
-  {"_id": new ObjectId(req.params.id)})
-
-.then(result => {
-  console.log(result); 
-  res.redirect('/read');
-})
-
-  //insert into it
-
-})
-
-//app.listen(3000);
-
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running & listening on port ${PORT}`);
+    console.log(`Server is running & listening on port ${PORT}`);
 });
