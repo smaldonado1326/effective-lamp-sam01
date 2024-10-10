@@ -14,4 +14,4 @@ This web application allows users to convert input text into the NATO phonetic a
 
 
 ## Render
--[Site:](https://effective-lamp-sam01.onrender.com)
+[Render](https://effective-lamp-sam01.onrender.com)
