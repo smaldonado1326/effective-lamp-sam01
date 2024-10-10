@@ -35,4 +35,35 @@ $(document).ready(function() {
     $('#clearBtn').click(function() {
         $('#textInput').val('');
     });
+    
+    
+    $('#input-text').on('keypress', function(event) {
+        if (event.key === 'Enter') {
+            var inputText = $('#input-text').val();
+            var convertedText = convertToNatoPhonetic(inputText);
+            $('#output-text').text(convertedText);
+            event.preventDefault(); // Prevents the form from submitting if inside a form
+        }
+    });
+
+// created this outside of sandbox but it just makes my enter key work 
+    $('#textInput').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            var inputText = $(this).val().trim();
+            if (inputText !== '') {
+                var outputText = convertToNatoPhonetic(inputText);
+    
+                // Place the output in the hidden input field for submission
+                $('#convertedText').val(outputText);
+    
+                // Submit the form to save the result as a new post in MongoDB
+                $('#conversionForm').submit();
+            }
+            event.preventDefault(); // Prevents default form behavior
+        }
+    });
+
+
+    
 });
+
