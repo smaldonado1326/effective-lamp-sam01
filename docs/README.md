@@ -14,7 +14,7 @@ This web application allows users to convert input text into the NATO phonetic a
 
 
 ## deployments 
-[Render](https://effective-lamp-sam01.onrender.com)
-[dev-john](https://github.com/smaldonado1326/effective-lamp-sam01/tree/dev-john)
-[dev-king](https://github.com/smaldonado1326/effective-lamp-sam01/tree/dev-king)
-[dev-lewis](https://github.com/smaldonado1326/effective-lamp-sam01/tree/dev-lewis)
+-[Render](https://effective-lamp-sam01.onrender.com)
+-[dev-john](https://github.com/smaldonado1326/effective-lamp-sam01/tree/dev-john)
+-[dev-king](https://github.com/smaldonado1326/effective-lamp-sam01/tree/dev-king)
+-[dev-lewis](https://github.com/smaldonado1326/effective-lamp-sam01/tree/dev-lewis)
